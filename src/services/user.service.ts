@@ -1,13 +1,11 @@
-import { getMaxListeners } from "process";
-import { PetModel } from "../models/pet.model";
-import { userModel } from "../models/user.model";
 
+import { userModel } from "../models/user.model";
 class UserService {
   user: Array<userModel> = [
     {
       id: 1,
-      name: "Salva Pets",
-      email: "salvapet@gmail.com",
+      name: "admin",
+      email: "admin@gmail.com",
       cnpj: "11.222.333/0001-22",
       district: "Andarai",
       password: "123456",
@@ -16,7 +14,7 @@ class UserService {
     {
       id: 2,
       name: "Pets",
-      email: "salva@gmail.com",
+      email: "tester@gmail.com",
       cnpj: "11.222.333/0001-22",
       district: "Andarai",
       password: "123456",

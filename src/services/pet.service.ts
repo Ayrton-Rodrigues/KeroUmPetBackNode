@@ -1,40 +1,88 @@
 import UserService from "./user.service";
 import { userModel } from "../models/user.model";
 import { PetModel } from "../models/pet.model";
-import userService from "./user.service";
 
 export class PetService {
-  userList: Array<userModel> = UserService.getAllUser();
 
-  getPetById(id: number, idPet: number) {
-    return this.userList[id].pet?.find((index) => index.id === idPet);
+  petList: Array<PetModel> = [
+    {
+      ownerId: 1,
+      id: 1,
+      name: "Ralf",
+      description: "Cachorro Pulador",
+      age: 14,
+    },
+
+    {
+      ownerId: 1,
+      id: 2,
+      name: "Rex",
+      description: "Cachorro ",
+      age: 14,
+    },
+
+    {
+      ownerId: 1,
+      id: 3,
+      name: "Rexona",
+      description: "Cachorro",
+      age: 4,
+    },
+
+    {
+      ownerId: 2,
+      id: 1,
+      name: "Miucha",
+      description: "Gata",
+      age: 14,
+    },
+
+    {
+      ownerId: 2,
+      id: 2,
+      name: "Laura",
+      description: "Gata ",
+      age: 14,
+    },
+  ];
+
+  getAllPets() {
+    return this.petList;
   }
 
-  createPet(id: number, petBody: PetModel) {
-    return this.userList[id].pet.push(petBody);
+  getPetsByOwnerId(id: number){
+    return this.petList.filter((pets) => pets.ownerId === id)
+  }
+
+  getPetById(id: number, idPet: number) {
+    return this.petList.find(
+      (index) => index.ownerId === id && index.id === idPet
+    );
+  }
+
+  createPet(petBody: PetModel) {
+    return this.petList.push(petBody);
   }
 
   getPetByFindIndex(id: number, idPet: number) {
-    return this.userList[id].pet?.findIndex((pet) => pet.id == idPet);
+    return this.petList.findIndex((index) => index.ownerId === id && index.id === idPet);
   }
 
   updatePet(id: number, idPet: number, petBody: PetModel) {
-    const pet = this.userList[id].pet[idPet];
+   
+    const pet = this.getPetById(id, idPet)
 
-    (pet.id = petBody.id),
-      (pet.name = petBody.name),
-      (pet.description = petBody.description),
-      (pet.age = petBody.age);
+    if(pet)
+    pet.id = petBody.id,
+    pet.name = petBody.name,
+    pet.description = petBody.description,
+    pet.age = petBody.age;
 
-    // console.log(`mostra: ${this.userList[id].id}`)
   }
 
-  deletePet(id: number, idPet: number) {
-    console.log(`service: ${id} ${idPet}`);
+  deletePet(idPet: number) {
 
-    return userService.user[id].pet?.splice(idPet, 1);
-    // const petId = this.getPetByFindIndex(id, idPet)
-    // console.log(`service: ${petId}`)
+    return this.petList.splice(idPet, 1);
   }
 }
 export default new PetService();

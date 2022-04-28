@@ -4,4 +4,5 @@ export interface PetModel {
   description: string,
   age: number,
   img?: string,
+  ownerId: number
 }

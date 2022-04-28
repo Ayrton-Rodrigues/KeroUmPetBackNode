@@ -7,5 +7,4 @@ export interface userModel{
   cnpj: string,
   district: string,
   password: string
- pet: Array<PetModel>
 }

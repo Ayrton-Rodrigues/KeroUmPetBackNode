@@ -1,74 +1,62 @@
-import { Router, Request, Response } from 'express';
-import UserService from '../services/user.service';
-import PetService from '../services/pet.service';
-import petService from '../services/pet.service';
-import userService from '../services/user.service';
+import { Router, Request, Response } from "express";
+import UserService from "../services/user.service";
+import PetService from "../services/pet.service";
 
 const router = Router();
 
-
-
-
-
-router.get('/:id/pets', (req: Request, res: Response) => {
-  const user = UserService.getUserById(parseInt(req.params.id));
-  if(!user?.pet){
-    res.status(404).send('Não encontrado!')
+router.get("/", (req: Request, res: Response) => {
+  const pets = PetService.getAllPets();
+  if (!pets) {
+    res.status(404).send("Não encontrado!");
   }
-  res.status(200).send(user?.pet)
-})
+  res.status(200).send(pets);
+});
 
-
-router.get('/:id/pets/:idPet', (req: Request, res: Response) => {
-  const user = UserService.getByFindIndex(parseInt(req.params.id));  
-  const pet = PetService.getPetById(user, parseInt(req.params.idPet))
-  if(!pet){
-    res.status(404).send('Não encontrado!')
+router.get("/:id", (req: Request, res: Response) => {
+  const petsOwner = PetService.getPetsByOwnerId(parseInt(req.params.id));
+  if (!petsOwner) {
+    res.status(404).send("Não encontrado!");
   }
-  res.status(200).send(pet)
-}
-)
+  res.status(200).send(petsOwner);
+});
 
-router.post('/:id/pets', (req: Request, res: Response) => {
-  const idUser = UserService.getByFindIndex(parseInt(req.params.id));
-  if(idUser === -1){
-    res.status(404).send('Não encontrado!')
-  }else {
-    PetService.createPet(idUser, req.body) 
-    res.status(201).send('Criado com sucesso!')
+router.get("/:id/:idPet", (req: Request, res: Response) => {
+  const user = parseInt(req.params.id);
+  const pets = PetService.getPetById(user, parseInt(req.params.idPet));
+
+  if (!pets) {
+    res.status(404).send("Não encontrado!");
   }
-})
+  res.status(200).send(pets);
+});
 
+router.post("/", (req: Request, res: Response) => {
+  PetService.createPet(req.body);
+  res.status(201).send("Criado com sucesso!");
+});
 
-router.put('/:id/pets/:idPet', (req: Request, res: Response) => {
-  const idUser = UserService.getByFindIndex(parseInt(req.params.id))
-  console.log(`route: ${idUser}`)
+router.put("/:id/:idPet", (req: Request, res: Response) => {
+  const user = parseInt(req.params.id);
+  const pet = parseInt(req.params.idPet);
+  console.log(user, pet);
+  PetService.updatePet(user, pet, req.body);
 
-  const idPet = PetService.getPetByFindIndex(idUser, parseInt(req.params.idPet))
-  console.log(`route: ${idPet}`)
+  res.send("criado");
+});
 
-if(!idPet){
-  res.status(404).send('Não encontrado')
-}
- const petUpdate = petService.updatePet(idUser, idPet, req.body)
-console.log(`caca: ${petUpdate}`)
+router.delete("/:id/:idPet", (req: Request, res: Response) => {
+  const ownerId = parseInt(req.params.id);
+  const petId = PetService.getPetByFindIndex(
+    ownerId,
+    parseInt(req.params.idPet)
+  );
 
- res.send('criado')
-})
-
-router.delete('/:id/pets/:idPet', (req: Request, res: Response) => {
-  const indexUser = UserService.getByFindIndex(parseInt(req.params.id))
-  console.log(`route: ${indexUser}`)
-  const indexPet = petService.getPetByFindIndex(indexUser, parseInt(req.params.idPet))
-  console.log(indexPet)
-if(indexPet === -1){
-  res.status(404).send('não encontrado')
-}else {
-  petService.deletePet(indexUser, Number(indexPet))
-}
-res.send('sucesso')
- 
-})  
-
+  if (petId === -1) {
+    res.status(404).send("não encontrado");
+  } else {
+    PetService.deletePet(petId);
+  }
+  res.status(200).send("sucesso");
+});
 
 export default router;

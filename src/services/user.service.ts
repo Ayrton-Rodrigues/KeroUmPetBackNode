@@ -1,56 +1,24 @@
-
 import { userModel } from "../models/user.model";
+import { UserRepository } from "../repository/user.repository";
 class UserService {
-  user: Array<userModel> = [
-    {
-  
-      name: "admin",
-      email: "admin@gmail.com",
-      cnpj: "11.222.333/0001-22",
-      district: "Andarai",
-      password: "123456",
-    },
-
-    {
-
-      name: "Pets",
-      email: "tester@gmail.com",
-      cnpj: "11.222.333/0001-22",
-      district: "Andarai",
-      password: "123456",
-    },
-  ];
-
   getAllUser() {
-    return this.user;
+    return UserRepository.getAll();
   }
 
   getUserById(id: number) {
-    return this.user.find((user) => user.id === id);
+    return UserRepository.getById(id);
   }
 
   create(userBody: userModel) {
-    this.user.push(userBody);
-  }
-
-  getByFindIndex(id: number) {
-    return this.user.findIndex((user) => user.id === id);
+    return UserRepository.create(userBody);
   }
 
   update(id: number, body: userModel) {
-    this.user[id] = {
-      id: body.id,
-      name: body.name,
-      email: body.email,
-      cnpj: body.cnpj,
-      district: body.district,
-      password: body.password,
-    
-    };
+    return UserRepository.update(id, body);
   }
 
-  deleteUser(id: number) {
-    return this.user.splice(id, 1);
+  removeUser(id: number) {
+    return UserRepository.delete(id);
   }
 }
 export default new UserService();

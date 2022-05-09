@@ -8,6 +8,7 @@ const router = Router();
 
 router.get('/', (req: Request, res: Response) => {
   const users = userService.getAllUser(); 
+ 
   res.send(users)
 })
 

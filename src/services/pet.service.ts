@@ -9,8 +9,9 @@ export class PetService {
       ownerId: 1,
       id: 1,
       name: "Ralf",
-      description: "Cachorro Pulador",
+      description: "Cachorro",
       age: 14,
+      img: 'https://t1.ea.ltmcdn.com/pt/posts/7/0/3/12_coisas_que_voce_nunca_deve_fazer_com_seu_cachorro_23307_600.jpg'
     },
 
     {
@@ -19,6 +20,7 @@ export class PetService {
       name: "Rex",
       description: "Cachorro ",
       age: 14,
+      img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFTRbGPT6_6eimvdmkBPAmqfgT-89HIAHhbA&usqp=CAU'
     },
 
     {
@@ -27,6 +29,7 @@ export class PetService {
       name: "Rexona",
       description: "Cachorro",
       age: 4,
+      img: 'https://blog.finofaro.com.br/wp-content/uploads/2018/03/Os-cachorros-vira-latas-mais-bonitos-e-fofos-e1521296708633.jpg'
     },
 
     {
@@ -35,6 +38,7 @@ export class PetService {
       name: "Miucha",
       description: "Gata",
       age: 14,
+      img: 'https://image.cachorrogato.com.br/textimages/nomes-para-felinos.jpg'
     },
 
     {
@@ -43,6 +47,7 @@ export class PetService {
       name: "Laura",
       description: "Gata ",
       age: 14,
+      img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlGS621q4gtd9bpkrppq0Fht0UCD2tydMFwNpeyqKt5ECndZmykIShazSgYgnfQsNahF0&usqp=CAU'
     },
   ];
 

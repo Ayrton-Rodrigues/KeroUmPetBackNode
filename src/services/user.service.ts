@@ -3,7 +3,7 @@ import { userModel } from "../models/user.model";
 class UserService {
   user: Array<userModel> = [
     {
-      id: 1,
+  
       name: "admin",
       email: "admin@gmail.com",
       cnpj: "11.222.333/0001-22",
@@ -12,7 +12,7 @@ class UserService {
     },
 
     {
-      id: 2,
+
       name: "Pets",
       email: "tester@gmail.com",
       cnpj: "11.222.333/0001-22",

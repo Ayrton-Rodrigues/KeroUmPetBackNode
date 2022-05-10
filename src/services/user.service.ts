@@ -1,6 +1,39 @@
 import { userModel } from "../models/user.model";
 import { UserRepository } from "../repository/user.repository";
 class UserService {
+
+
+// teste para login
+
+  user: Array<userModel> = [
+    {
+      id: 1,
+      name: "admin",
+      email: "admin@gmail.com",
+      cnpj: "11.222.333/0001-22",
+      district: "Andarai",
+      password: "123456",
+    },
+
+    {
+      id: 2,
+      name: "Pets",
+      email: "tester@gmail.com",
+      cnpj: "11.222.333/0001-22",
+      district: "Andarai",
+      password: "123456",
+    },
+  ];
+
+  getUsers(){
+    return this.user;
+  }
+
+// teste para login 
+
+
+
+
   getAllUser() {
     return UserRepository.getAll();
   }

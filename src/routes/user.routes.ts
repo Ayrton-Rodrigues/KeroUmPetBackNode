@@ -3,10 +3,18 @@ import userService from "../services/user.service";
 
 const router = Router();
 
-router.get("/", async (req: Request, res: Response) => {
-  const users = await userService.getAllUser();
-  res.send(users);
-});
+
+//rota para teste de login
+
+router.get('/', (req: Request, res: Response) => {
+  const user = userService.getUsers();
+  res.send(user)
+})
+
+// router.get("/", async (req: Request, res: Response) => {
+//   const users = await userService.getAllUser();
+//   res.send(users);
+// });
 
 router.get("/:id", async (req: Request, res: Response) => {
   const user = await userService.getUserById(parseInt(req.params.id));

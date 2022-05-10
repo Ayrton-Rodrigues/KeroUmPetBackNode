@@ -26,7 +26,7 @@ export class PetService {
     {
       ownerId: 1,
       id: 3,
-      name: "Rexona",
+      name: "Tobi",
       description: "Cachorro",
       age: 4,
       img: 'https://blog.finofaro.com.br/wp-content/uploads/2018/03/Os-cachorros-vira-latas-mais-bonitos-e-fofos-e1521296708633.jpg'
@@ -34,7 +34,7 @@ export class PetService {
 
     {
       ownerId: 2,
-      id: 1,
+      id: 4,
       name: "Miucha",
       description: "Gata",
       age: 14,
@@ -43,7 +43,7 @@ export class PetService {
 
     {
       ownerId: 2,
-      id: 2,
+      id: 5,
       name: "Laura",
       description: "Gata ",
       age: 14,
